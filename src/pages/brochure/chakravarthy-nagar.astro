@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import DocumentLayout from "@/layouts/DocumentLayout.astro";
+import ChakravarthyBrochure from "@/components/ChakravarthyBrochure.astro";
+
+const project = (await getCollection("projects")).find((item) => item.id === "chakravarthy-nagar");
+if (!project) throw new Error("Missing Chakravarthy Nagar project");
+---
+
+<DocumentLayout
+  title="Dwarak Chakravarthy Nagar specification"
+  description="Specification and price request for Flat F1 at Dwarak Chakravarthy Nagar, Pallikaranai."
+>
+  <ChakravarthyBrochure project={project} edition="print" />
+</DocumentLayout>

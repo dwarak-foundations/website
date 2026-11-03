@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, rm } from "node:fs/promises";
+import { access, cp, mkdir, readdir, rm } from "node:fs/promises";
 import { dirname, extname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -15,8 +15,18 @@ const excludedDirectories = new Set(["harmony"]);
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(imageOutput, { recursive: true });
 
-for (const filename of ["_headers", "_redirects", "atlantis.pdf"]) {
-  await cp(new URL(filename, sourceRoot), new URL(filename, outputRoot));
+for (const filename of ["_headers", "_redirects", "atlantis.pdf", "chakravarthy-nagar.pdf"]) {
+  const source = new URL(filename, sourceRoot);
+  try {
+    await access(source);
+  } catch {
+    if (filename.endsWith(".pdf")) {
+      console.warn(`Skipping missing ${filename}`);
+      continue;
+    }
+    throw new Error(`Missing required asset ${filename}`);
+  }
+  await cp(source, new URL(filename, outputRoot));
 }
 
 async function prepareDirectory(directory) {

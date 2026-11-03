@@ -11,6 +11,7 @@ const projects = defineCollection({
     street: z.string(),
     address: z.string(),
     status: z.enum(["completed", "ongoing", "upcoming"]),
+    presentation: z.enum(["standard", "specification"]).default("standard"),
     completion: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().int(),

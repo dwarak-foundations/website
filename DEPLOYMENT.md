@@ -69,7 +69,7 @@ npx wrangler deploy --dry-run --config workers/events/wrangler.jsonc
 Then perform these browser checks:
 
 1. Open the Pages preview on desktop and mobile.
-2. Verify all nine project pages, images, maps, and the Atlantis brochure.
+2. Verify all ten project pages, images, maps, the Atlantis brochure, and the Chakravarthy Nagar specification.
 3. Check the legacy URL redirects in `public/_redirects`.
 4. Click a tracked phone, email, project, and brochure link.
 5. Confirm the event Worker returns successful responses and records events in Analytics Engine.

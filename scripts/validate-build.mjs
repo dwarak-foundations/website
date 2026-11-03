@@ -45,7 +45,7 @@ for (const file of htmlFiles) {
   }
 }
 
-if (htmlFiles.length !== 15) failures.push(`Expected 15 generated HTML pages, found ${htmlFiles.length}`);
+if (htmlFiles.length !== 17) failures.push(`Expected 17 generated HTML pages, found ${htmlFiles.length}`);
 
 if (failures.length > 0) {
   console.error(failures.join("\n"));

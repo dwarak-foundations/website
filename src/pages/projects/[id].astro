@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactBand from "@/components/ContactBand.astro";
+import ChakravarthyBrochure from "@/components/ChakravarthyBrochure.astro";
 import { byOrder, projectPath, projectStatus } from "@/lib/content";
 
 export async function getStaticPaths() {
@@ -45,6 +46,10 @@ const schema = {
   image={project.data.hero.src}
   schema={schema}
 >
+  {project.data.presentation === "specification" ? (
+    <ChakravarthyBrochure project={project} />
+  ) : (
+  <>
   <header class="project-hero">
     <div class="project-hero__image">
       <img
@@ -132,4 +137,6 @@ const schema = {
   </section>
 
   <ContactBand />
+  </>
+  )}
 </BaseLayout>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <rect width="1600" height="1200" fill="#231f20"/>
+  <rect width="1600" height="10" fill="#d52027"/>
+  <g stroke="rgba(251,248,243,0.08)" stroke-width="1">
+    <path d="M80 160H1520M80 320H1520M80 480H1520M80 640H1520M80 800H1520M80 960H1520"/>
+    <path d="M160 80V1120M320 80V1120M480 80V1120M640 80V1120M800 80V1120M960 80V1120M1120 80V1120M1280 80V1120M1440 80V1120"/>
+  </g>
+  <g fill="none" stroke="#efeae2" stroke-width="3">
+    <rect x="430" y="250" width="620" height="700"/>
+    <path d="M430 430H1050M430 590H1050M430 750H1050"/>
+    <path d="M560 250V950M920 250V950"/>
+    <path d="M690 430V590M690 590V750M820 430V590M820 750V950"/>
+  </g>
+  <rect x="690" y="470" width="130" height="80" fill="none" stroke="#d52027" stroke-width="3"/>
+  <text x="120" y="140" fill="#d52027" font-family="Georgia, 'Times New Roman', serif" font-size="28" letter-spacing="7">PALLIKARANAI</text>
+</svg>

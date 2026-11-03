@@ -19,6 +19,10 @@ const tamil: Record<string, string> = {
   "Explore the 10,350-square-foot Golden Beach Bungalow completed by Dwarak Foundations in Injambakkam, Chennai.": "சென்னை இஞ்சம்பாக்கத்தில் துவாரக் ஃபவுண்டேஷன்ஸ் நிறைவு செய்த 10,350 சதுர அடி கோல்டன் பீச் பங்களாவைப் பாருங்கள்.",
   "Explore Dwarak Shree, a four-home apartment project completed by Dwarak Foundations in Perumbakkam, Chennai.": "சென்னை பெரும்பாக்கத்தில் துவாரக் ஃபவுண்டேஷன்ஸ் நிறைவு செய்த நான்கு இல்லத் திட்டமான துவாரக் ஸ்ரீயைப் பாருங்கள்.",
   "Explore Dwarak Prem, a four-home residential project completed by Dwarak Foundations in S. Kolathur, Chennai.": "சென்னை எஸ். கொளத்தூரில் துவாரக் ஃபவுண்டேஷன்ஸ் நிறைவு செய்த நான்கு இல்லத் திட்டமான துவாரக் பிரேமைப் பாருங்கள்.",
+  "Read the specification for Flat F1 at Dwarak Chakravarthy Nagar, a first-floor home on 5th Cross Street in Pallikaranai, and ask Dwarak Foundations for the price.": "பள்ளிக்கரணை 5-வது குறுக்குத் தெருவில் உள்ள துவாரக் சக்கரவர்த்தி நகர், F1 இல்லத்தின் விவரக்குறிப்பைப் படித்து விலையைக் கேளுங்கள்.",
+  "Dwarak Chakravarthy Nagar": "துவாரக் சக்கரவர்த்தி நகர்",
+  "First-floor home in Chakravarthy Nagar, Pallikaranai. The specification is published. Ask for the price.": "பள்ளிக்கரணை சக்கரவர்த்தி நகரில் முதல் மாடி இல்லம். விவரக்குறிப்பு வெளியிடப்பட்டுள்ளது. விலையைக் கேளுங்கள்.",
+  "5th Cross Street": "5-வது குறுக்குத் தெரு",
   "Home": "முகப்பு",
   "Projects": "திட்டங்கள்",
   "About": "எங்களைப் பற்றி",
@@ -310,6 +314,7 @@ const projectNames = [
   "Golden Beach Bungalow",
   "Dwarak Shree",
   "Dwarak Prem",
+  "Dwarak Chakravarthy Nagar",
 ];
 const originalText = new WeakMap<Text, string>();
 const originalAttributes = new WeakMap<Element, Map<string, string>>();

@@ -6,7 +6,11 @@ export default defineConfig({
   site: "https://dwarakfoundations.com",
   output: "static",
   publicDir: "./public",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes("/brochure/"),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

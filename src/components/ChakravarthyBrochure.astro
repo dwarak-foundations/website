@@ -1,0 +1,457 @@
+---
+import type { CollectionEntry } from "astro:content";
+import LocaleText from "@/components/LocaleText.astro";
+import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
+import { whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
+import {
+  facts,
+  homeItems,
+  included,
+  limits,
+  mapCenter,
+  paperwork,
+  pdfPath,
+  placeGroups,
+  qualities,
+  quotedPrice,
+  sections,
+  whatsappMessage,
+} from "@/data/chakravarthy-nagar";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  edition?: "web" | "print";
+}
+
+const { project, edition = "web" } = Astro.props;
+const print = edition === "print";
+const href = (path: string) => (print ? new URL(path, "https://dwarakfoundations.com").href : path);
+const waEn = whatsappHref(whatsappMessage.en);
+const waTa = whatsappHref(whatsappMessage.ta);
+const phone = whatsappDisplayNumber.replace(/(\d{5})(\d{5})/, "$1 $2");
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("5th Cross Street, Chakravarthy Nagar, Pallikaranai, Chennai 600100")}`;
+const searchHref = (query: string) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}&center=${mapCenter.latitude},${mapCenter.longitude}`;
+---
+
+<article class:list={["brochure", { "brochure--print": print }]} data-i18n-ignore data-brochure={edition}>
+  <header class="brochure-hero" id="intro">
+    <div class="shell brochure-hero__grid">
+      <div>
+        <p class="eyebrow">
+          <LocaleText en="Ongoing" ta="நடப்பு" />
+          <span aria-hidden="true"> / </span>
+          <LocaleText en="Pallikaranai" ta="பள்ளிக்கரணை" />
+        </p>
+        <h1><LocaleText en="A first-floor home in Chakravarthy Nagar." ta="சக்கரவர்த்தி நகரில், முதல் மாடியில் ஒரு இல்லம்." /></h1>
+        <p class="lede">
+          <LocaleText
+            en="Flat F1, on 5th Cross Street. Read how the building is made, who is building it, what the home includes, and what is around the street. The price is last, and it is shared on WhatsApp."
+            ta="5-வது குறுக்குத் தெருவில் F1. கட்டிடம் எப்படி கட்டப்படுகிறது, யார் கட்டுகிறார்கள், இல்லத்தில் என்ன சேர்க்கப்பட்டுள்ளது, தெருவைச் சுற்றி என்ன உள்ளது என்று படியுங்கள். விலை கடைசியில். அது வாட்ஸ்அப்பில் பகிரப்படும்."
+          />
+        </p>
+        <address>{project.data.address}</address>
+      </div>
+      <figure class="brochure-hero__figure">
+        <img src={project.data.hero.src} alt={project.data.hero.alt} width="1600" height="1200" fetchpriority="high" />
+      </figure>
+    </div>
+    <dl class="brochure-facts shell">
+      {facts.map((fact) => (
+        <div>
+          <dt><LocaleText en={fact.label.en} ta={fact.label.ta} /></dt>
+          <dd>
+            <LocaleText en={fact.value.en} ta={fact.value.ta} />
+            <small><LocaleText en={fact.note.en} ta={fact.note.ta} /></small>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </header>
+
+  {!print && (
+    <nav class="brochure-nav" aria-label="On this page">
+      <div class="shell brochure-nav__inner">
+        <div class="brochure-nav__links">
+          {sections.map((section) => (
+            <a href={`#${section.id}`} data-nav>
+              <LocaleText en={section.label.en} ta={section.label.ta} />
+            </a>
+          ))}
+        </div>
+        <button type="button" data-spec-toggle aria-expanded="false">
+          <span data-when-closed><LocaleText en="Open every specification" ta="அனைத்து விவரக்குறிப்புகளையும் திற" /></span>
+          <span data-when-open hidden><LocaleText en="Close specifications" ta="விவரக்குறிப்புகளை மூடு" /></span>
+        </button>
+      </div>
+    </nav>
+  )}
+
+  <section class="brochure-section" id="building" aria-labelledby="building-title">
+    <div class="shell">
+      <p class="eyebrow"><LocaleText en="How it is built" ta="எப்படி கட்டப்படுகிறது" /></p>
+      <div class="brochure-section__intro">
+        <h2 id="building-title"><LocaleText en="Four things that decide how a building feels in ten years." ta="பத்து ஆண்டுகளுக்குப் பிறகும் கட்டிடம் எப்படி இருக்கும் என்பதை முடிவு செய்யும் நான்கு விஷயங்கள்." /></h2>
+        <p>
+          {print ? (
+            <LocaleText
+              en="The finish can be seen in a sample. These cannot. The line under each one is the specification, in the English it was written in."
+              ta="ஃபினிஷ் ஒரு மாதிரியில் தெரியும். இவை தெரியாது. ஒவ்வொன்றின் கீழுள்ள வரி விவரக்குறிப்பு. அது எழுதப்பட்ட ஆங்கிலத்திலேயே."
+            />
+          ) : (
+            <LocaleText
+              en="The finish can be seen in a sample. These cannot. Open a card for the line from the specification. That line stays in English, as it was written."
+              ta="ஃபினிஷ் ஒரு மாதிரியில் தெரியும். இவை தெரியாது. அட்டையைத் திறந்தால் விவரக்குறிப்பின் வரி இருக்கும். அந்த வரி எழுதப்பட்டபடி ஆங்கிலத்திலேயே."
+            />
+          )}
+        </p>
+      </div>
+      <div class="brochure-cards">
+        {qualities.map((item, index) => (
+          <article class="brochure-card">
+            <p class="brochure-card__index">{String(index + 1).padStart(2, "0")}</p>
+            <h3><LocaleText en={item.title.en} ta={item.title.ta} /></h3>
+            <p><LocaleText en={item.summary.en} ta={item.summary.ta} /></p>
+            {print ? (
+              <p class="brochure-clause">{item.spec}</p>
+            ) : (
+              <details data-spec>
+                <summary><LocaleText en="Specification" ta="விவரக்குறிப்பு" /></summary>
+                <p class="brochure-clause">{item.spec}</p>
+              </details>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="brochure-section brochure-section--deep" id="builder" aria-labelledby="builder-title">
+    <div class="shell brochure-builder">
+      <figure class="brochure-portrait">
+        <img src="/img/team/profile-picture-1.jpg" width="900" height="1125" alt="Mr. Varadharajan Ramasamy, designated partner at Dwarak Foundations" loading="lazy" />
+      </figure>
+      <div>
+        <p class="eyebrow"><LocaleText en="Who builds it" ta="யார் கட்டுகிறார்கள்" /></p>
+        <h2 id="builder-title"><LocaleText en="The same company, in this neighbourhood, since 1998." ta="1998 முதல், இதே பகுதியில், இதே நிறுவனம்." /></h2>
+        <p>
+          <LocaleText
+            en="Dwarak Foundations has completed more than 50 residential projects in Chennai, including 27 apartment buildings, under Mr. Varadharajan Ramasamy. The office is in Pallikaranai."
+            ta="திரு. வரதராஜன் ராமசாமி தலைமையில் துவாரக் ஃபவுண்டேஷன்ஸ் சென்னையில் 50-க்கும் மேற்பட்ட குடியிருப்புத் திட்டங்களை முடித்துள்ளது. அவற்றில் 27 அடுக்குமாடிக் கட்டிடங்கள். அலுவலகம் பள்ளிக்கரணையில்."
+          />
+        </p>
+        <blockquote>
+          <p><LocaleText en="They never compromised on quality or the specifications we agreed upon." ta="ஒப்புக்கொண்ட தரத்திலும் விவரக்குறிப்புகளிலும் அவர்கள் சமரசம் செய்யவில்லை." /></p>
+          <footer><LocaleText en="D. Singaravelu, retired central government officer" ta="டி. சிங்காரவேலு, ஓய்வுபெற்ற மத்திய அரசு அதிகாரி" /></footer>
+        </blockquote>
+        <p>
+          <LocaleText
+            en="Dwarak Atlantis, our other ongoing building, is about 1 km from here on Paari Street."
+            ta="எங்கள் மற்றொரு நடப்புக் கட்டிடமான துவாரக் அட்லாண்டிஸ், இங்கிருந்து சுமார் 1 கி.மீ தொலைவில் பாரி தெருவில் உள்ளது."
+          />
+        </p>
+        <p class="brochure-links">
+          <a href={href("/projects/atlantis/")}><LocaleText en="See Atlantis" ta="அட்லாண்டிஸைப் பாருங்கள்" /> <span aria-hidden="true">↗</span></a>
+          <a href={href("/about/")}><LocaleText en="About the company" ta="நிறுவனம் பற்றி" /> <span aria-hidden="true">↗</span></a>
+          <a href={href("/testimonials/")}><LocaleText en="Client stories" ta="வாடிக்கையாளர் அனுபவங்கள்" /> <span aria-hidden="true">↗</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="brochure-section" id="home" aria-labelledby="home-title">
+    <div class="shell">
+      <p class="eyebrow"><LocaleText en="What you live with" ta="நீங்கள் வாழ்வது" /></p>
+      <div class="brochure-section__intro">
+        <h2 id="home-title"><LocaleText en="The home, in the order you will notice it." ta="நீங்கள் கவனிக்கும் வரிசையில், இல்லம்." /></h2>
+        <p>
+          {print ? (
+            <LocaleText
+              en="The sentence is the everyday version. Under it is the exact line from the sheet, kept in English."
+              ta="வாக்கியம் தினசரி பதிப்பு. அதன் கீழ் அட்டையின் சரியான வரி, ஆங்கிலத்திலேயே."
+            />
+          ) : (
+            <LocaleText
+              en="The sentence is the everyday version. Open the specification for the exact line. It stays in English, because that is how the sheet was written."
+              ta="வாக்கியம் தினசரி பதிப்பு. சரியான வரிக்கு விவரக்குறிப்பைத் திறக்கவும். அட்டை ஆங்கிலத்தில் எழுதப்பட்டதால் அந்த வரி ஆங்கிலத்திலேயே."
+            />
+          )}
+        </p>
+      </div>
+      <div class="brochure-specs">
+        {homeItems.map((item) => (
+          <article class="brochure-spec-row">
+            <div>
+              <h3><LocaleText en={item.title.en} ta={item.title.ta} /></h3>
+              <p><LocaleText en={item.summary.en} ta={item.summary.ta} /></p>
+            </div>
+            {print ? (
+              <p class="brochure-clause">{item.spec}</p>
+            ) : (
+              <details data-spec>
+                <summary><LocaleText en="Specification" ta="விவரக்குறிப்பு" /></summary>
+                <p class="brochure-clause">{item.spec}</p>
+              </details>
+            )}
+          </article>
+        ))}
+      </div>
+      {print ? (
+        <div class="brochure-paper">
+          <h3><LocaleText en="The land and the paperwork" ta="நிலமும் ஆவணங்களும்" /></h3>
+          {paperwork.map((line) => <p><LocaleText en={line.en} ta={line.ta} /></p>)}
+        </div>
+      ) : (
+        <details class="brochure-paper">
+          <summary><LocaleText en="The land and the paperwork" ta="நிலமும் ஆவணங்களும்" /></summary>
+          {paperwork.map((line) => <p><LocaleText en={line.en} ta={line.ta} /></p>)}
+        </details>
+      )}
+    </div>
+  </section>
+
+  <section class="brochure-section brochure-section--deep" id="around" aria-labelledby="around-title">
+    <div class="shell">
+      <p class="eyebrow"><LocaleText en="Where it is" ta="எங்கு உள்ளது" /></p>
+      <div class="brochure-section__intro">
+        <h2 id="around-title"><LocaleText en="Inside a gate, on a 20-foot cross street." ta="20 அடி குறுக்குத் தெருவில், ஒரு வாயிலுக்குள்." /></h2>
+        <p>
+          <LocaleText
+            en={print
+              ? "About 18 buildings share this community in Chakravarthy Nagar, beside Gopal Nagar and Narayanapuram. Schools, hospitals, food, open ground, and the way out are listed in full."
+              : "About 18 buildings share this community in Chakravarthy Nagar, beside Gopal Nagar and Narayanapuram. Choose one kind of place. The nearest come first."}
+            ta={print
+              ? "கோபால் நகருக்கும் நாராயணபுரத்துக்கும் அருகிலுள்ள சக்கரவர்த்தி நகரில், சுமார் 18 கட்டிடங்கள் இந்தச் சமூகத்தைப் பகிர்கின்றன. பள்ளி, மருத்துவமனை, உணவு, திறந்த வெளி, வெளியே செல்லும் வழி ஆகியவை முழுதும் பட்டியலிடப்பட்டுள்ளன."
+              : "கோபால் நகருக்கும் நாராயணபுரத்துக்கும் அருகிலுள்ள சக்கரவர்த்தி நகரில், சுமார் 18 கட்டிடங்கள் இந்தச் சமூகத்தைப் பகிர்கின்றன. ஒரு வகையைத் தேர்ந்தெடுங்கள். அருகிலுள்ளவை முதலில்."}
+          />
+        </p>
+      </div>
+      <aside class="brochure-gate">
+        <p class="brochure-gate__figure">
+          <span>18</span>
+          <small><LocaleText en="buildings, about" ta="கட்டிடங்கள், சுமார்" /></small>
+        </p>
+        <div>
+          <h3><LocaleText en="A gated community." ta="ஒரு கேட்டட் கம்யூனிட்டி." /></h3>
+          <p>
+            <LocaleText
+              en="Flat F1 is one home inside it, on 5th Cross Street. You come in through the gate. The buildings share the ground inside, which is what makes the place feel quiet and looked after."
+              ta="F1 அதற்குள் ஒரு இல்லம், 5-வது குறுக்குத் தெருவில். உள்ளே வருவது வாயில் வழியாக. கட்டிடங்கள் உள்ளே உள்ள இடத்தைப் பகிர்கின்றன. அதனால் இந்த இடம் அமைதியாகவும் கவனிக்கப்பட்டதாகவும் இருக்கிறது."
+            />
+          </p>
+        </div>
+      </aside>
+      {print ? (
+        <p class="brochure-map-link"><a href={mapsHref}>{project.data.address}</a></p>
+      ) : (
+        <div class="map-frame brochure-map">
+          <iframe
+            src={project.data.mapEmbed}
+            title={`Map showing ${project.data.title}`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+      <p class="brochure-distance-note">
+        <LocaleText
+          en="Distances are straight lines from Chakravarthy Nagar Main Road, near the Gopal Nagar junction, not from a particular door. A drive can be longer. The home is on 5th Cross Street."
+          ta="தூரங்கள் கோபால் நகர் சந்திப்புக்கு அருகிலுள்ள சக்கரவர்த்தி நகர் மெயின் ரோடிலிருந்து நேர்கோடு. ஒரு குறிப்பிட்ட வாசலிலிருந்து அல்ல. வாகனத் தூரம் அதிகமாக இருக்கலாம். இல்லம் 5-வது குறுக்குத் தெருவில்."
+        />
+        {!print && (
+          <>
+            {" "}
+            <a href={mapsHref} target="_blank" rel="noreferrer"><LocaleText en="Open the map" ta="வரைபடத்தைத் திற" /> <span aria-hidden="true">↗</span></a>
+          </>
+        )}
+      </p>
+      <div class="brochure-around">
+        {!print && (
+          <div class="brochure-place-tabs" role="tablist" aria-label="Nearby places">
+            {placeGroups.map((group, index) => (
+              <button
+                type="button"
+                role="tab"
+                id={`${group.id}-tab`}
+                data-place-tab={group.id}
+                aria-selected={index === 0 ? "true" : "false"}
+                aria-controls={`${group.id}-panel`}
+                tabindex={index === 0 ? 0 : -1}
+              >
+                <LocaleText en={group.title.en} ta={group.title.ta} />
+                <span>{group.visible.length + group.more.length}</span>
+              </button>
+            ))}
+          </div>
+        )}
+        {placeGroups.map((group, index) => (
+          <section
+            class="brochure-place-panel"
+            id={`${group.id}-panel`}
+            role="tabpanel"
+            aria-labelledby={`${group.id}-title`}
+            data-place-panel={group.id}
+            hidden={!print && index !== 0}
+          >
+            <h3 id={`${group.id}-title`}><LocaleText en={group.title.en} ta={group.title.ta} /></h3>
+            <p><LocaleText en={group.intro.en} ta={group.intro.ta} /></p>
+            <ul>
+              {group.visible.map((place) => (
+                <li>
+                  <span>{place.name}</span>
+                  <small><LocaleText en={place.meta.en} ta={place.meta.ta} /></small>
+                </li>
+              ))}
+            </ul>
+            {group.more.length > 0 && (print ? (
+              <ul>
+                {group.more.map((place) => (
+                  <li>
+                    <span>{place.name}</span>
+                    <small><LocaleText en={place.meta.en} ta={place.meta.ta} /></small>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <details>
+                <summary><LocaleText en="More nearby" ta="இன்னும் அருகில்" /></summary>
+                <ul>
+                  {group.more.map((place) => (
+                    <li>
+                      <span>{place.name}</span>
+                      <small><LocaleText en={place.meta.en} ta={place.meta.ta} /></small>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+            {!print && (
+              <a class="brochure-search" href={searchHref(group.mapQuery)} target="_blank" rel="noreferrer">
+                <LocaleText en="See more on the map" ta="வரைபடத்தில் மேலும் பாருங்கள்" /> <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="brochure-section brochure-price" id="price" aria-labelledby="price-title">
+    <div class="shell">
+      <p class="eyebrow"><LocaleText en="The price" ta="விலை" /></p>
+      <div class="brochure-section__intro">
+        <h2 id="price-title"><LocaleText en="The price is this list." ta="விலை என்பது இந்தப் பட்டியல்." /></h2>
+        <p>
+          <LocaleText
+            en="Nothing here is an extra. The figure for Flat F1 is shared on WhatsApp, because availability changes and so you can ask about this home directly."
+            ta="இங்கு எதுவும் கூடுதல் அல்ல. F1-இன் தொகை வாட்ஸ்அப்பில் பகிரப்படும். கிடைப்பது மாறும். இந்த இல்லத்தைப் பற்றி நேரடியாகக் கேட்கலாம்."
+          />
+        </p>
+      </div>
+      <ul class="brochure-included">
+        {included.map((line) => (
+          <li><LocaleText en={line.en} ta={line.ta} /></li>
+        ))}
+      </ul>
+      <div class="brochure-limits">
+        <h3><LocaleText en="So nothing is assumed" ta="எதுவும் யூகிக்கப்படாமல்" /></h3>
+        <ul>
+          {limits.map((limit) => (
+            <li>
+              <strong><LocaleText en={limit.title.en} ta={limit.title.ta} /></strong>
+              <span><LocaleText en={limit.text.en} ta={limit.text.ta} /></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {print && quotedPrice && (
+        <p class="brochure-figure">
+          <LocaleText en={quotedPrice.en} ta={quotedPrice.ta} />
+        </p>
+      )}
+      <div class="brochure-ask-panel">
+        <div>
+          <h3><LocaleText en="Ask for the current price." ta="தற்போதைய விலையைக் கேளுங்கள்." /></h3>
+          <p><LocaleText en="It opens WhatsApp with a note about Flat F1, so the reply can be the figure." ta="இது F1 பற்றிய குறிப்புடன் வாட்ஸ்அப்பைத் திறக்கும். பதில் தொகையாக இருக்கும்." /></p>
+          {print && <p class="brochure-phone"><a href={waEn}>{phone}</a></p>}
+        </div>
+        <div class="brochure-ask-panel__actions">
+          <a class="button button--accent locale-en" href={waEn} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_clicked" data-analytics-target="chakravarthy_nagar_price">
+            <span class="button__label"><WhatsAppIcon /><LocaleText en="Get the price on WhatsApp" ta="வாட்ஸ்அப்பில் விலையைப் பெறுங்கள்" /></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button--accent locale-ta" href={waTa} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_clicked" data-analytics-target="chakravarthy_nagar_price_ta">
+            <span class="button__label"><WhatsAppIcon /><span lang="ta">வாட்ஸ்அப்பில் விலையைப் பெறுங்கள்</span></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          {!print && (
+            <a class="button button--outline" href={pdfPath} data-analytics-event="brochure_downloaded" data-analytics-target="chakravarthy-nagar">
+              <LocaleText en="Download the specification" ta="விவரக்குறிப்பைப் பதிவிறக்கு" />
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+      </div>
+      {print && (
+        <p class="brochure-colophon">
+          Dwarak Foundations Chennai LLP · Pallikaranai · {phone}<br />
+          dwarakfoundations@gmail.com · dwarakfoundations.com/projects/chakravarthy-nagar/
+        </p>
+      )}
+    </div>
+  </section>
+
+</article>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-brochure='web']");
+  if (root) {
+    const toggle = root.querySelector<HTMLButtonElement>("[data-spec-toggle]");
+    const closedLabel = toggle?.querySelector<HTMLElement>("[data-when-closed]");
+    const openLabel = toggle?.querySelector<HTMLElement>("[data-when-open]");
+    toggle?.addEventListener("click", () => {
+      const specs = [...root.querySelectorAll<HTMLDetailsElement>("[data-spec]")];
+      const expand = specs.some((item) => !item.open);
+      for (const item of specs) item.open = expand;
+      toggle.setAttribute("aria-expanded", String(expand));
+      if (closedLabel) closedLabel.hidden = expand;
+      if (openLabel) openLabel.hidden = !expand;
+    });
+
+    const links = [...root.querySelectorAll<HTMLAnchorElement>("[data-nav]")];
+    const linkFor = new Map(links.flatMap((link) => {
+      const id = link.getAttribute("href")?.slice(1);
+      const section = id ? document.getElementById(id) : null;
+      return section ? [[section, link] as const] : [];
+    }));
+    if (linkFor.size > 0) {
+      const spy = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        for (const link of links) {
+          const current = link === linkFor.get(visible.target as HTMLElement);
+          if (current) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        }
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] });
+      for (const section of linkFor.keys()) spy.observe(section);
+    }
+
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-place-tab]")];
+    const panels = [...root.querySelectorAll<HTMLElement>("[data-place-panel]")];
+    const showPlaces = (id: string) => {
+      for (const tab of tabs) {
+        const on = tab.dataset.placeTab === id;
+        tab.setAttribute("aria-selected", String(on));
+        tab.tabIndex = on ? 0 : -1;
+      }
+      for (const panel of panels) panel.hidden = panel.dataset.placePanel !== id;
+    };
+    for (const tab of tabs) {
+      tab.addEventListener("click", () => showPlaces(tab.dataset.placeTab ?? ""));
+    }
+  }
+</script>
