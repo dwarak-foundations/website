@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import LocaleText from "@/components/LocaleText.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
-import { whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
+import { email, whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
 import {
   facts,
   homeItems,
@@ -136,8 +136,8 @@ const searchHref = (query: string) =>
         <h2 id="builder-title"><LocaleText en="The same company, in this neighbourhood, since 1998." ta="1998 முதல், இதே பகுதியில், இதே நிறுவனம்." /></h2>
         <p>
           <LocaleText
-            en="Dwarak Foundations has completed more than 50 residential projects in Chennai, including 27 apartment buildings, under Mr. Varadharajan Ramasamy. The office is in Pallikaranai."
-            ta="திரு. வரதராஜன் ராமசாமி தலைமையில் துவாரக் ஃபவுண்டேஷன்ஸ் சென்னையில் 50-க்கும் மேற்பட்ட குடியிருப்புத் திட்டங்களை முடித்துள்ளது. அவற்றில் 27 அடுக்குமாடிக் கட்டிடங்கள். அலுவலகம் பள்ளிக்கரணையில்."
+            en="Dwarak Foundations has completed more than 50 residential projects in Chennai, including 27 apartment buildings, under Mr. Varadharajan Ramasamy. The office is in Velachery."
+            ta="திரு. வரதராஜன் ராமசாமி தலைமையில் துவாரக் ஃபவுண்டேஷன்ஸ் சென்னையில் 50-க்கும் மேற்பட்ட குடியிருப்புத் திட்டங்களை முடித்துள்ளது. அவற்றில் 27 அடுக்குமாடிக் கட்டிடங்கள். அலுவலகம் வேளச்சேரியில்."
           />
         </p>
         <blockquote>
@@ -146,8 +146,8 @@ const searchHref = (query: string) =>
         </blockquote>
         <p>
           <LocaleText
-            en="Dwarak Atlantis, our other ongoing building, is about 1 km from here on Paari Street."
-            ta="எங்கள் மற்றொரு நடப்புக் கட்டிடமான துவாரக் அட்லாண்டிஸ், இங்கிருந்து சுமார் 1 கி.மீ தொலைவில் பாரி தெருவில் உள்ளது."
+            en="Dwarak Atlantis, one of our completed buildings, is about 1 km from here on Paari Street."
+            ta="எங்கள் நிறைவு பெற்ற கட்டிடங்களில் ஒன்றான துவாரக் அட்லாண்டிஸ், இங்கிருந்து சுமார் 1 கி.மீ தொலைவில் பாரி தெருவில் உள்ளது."
           />
         </p>
         <p class="brochure-links">
@@ -395,8 +395,8 @@ const searchHref = (query: string) =>
       </div>
       {print && (
         <p class="brochure-colophon">
-          Dwarak Foundations Chennai LLP · Pallikaranai · {phone}<br />
-          dwarakfoundations@gmail.com · dwarakfoundations.com/projects/chakravarthy-nagar/
+          Dwarak Foundations Chennai LLP · Velachery · {phone}<br />
+          {email} · dwarakfoundations.com/projects/chakravarthy-nagar/
         </p>
       )}
     </div>

@@ -395,6 +395,64 @@ html[data-locale="ta"] .home-hero .display-title {
   padding-block: clamp(8.5rem, 11vw, 10rem) clamp(2rem, 4vw, 3rem);
 }
 
+.page-hero--offer .page-title {
+  max-width: 14ch;
+}
+
+.page-hero--offer .lede {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+.offer-visit {
+  margin: 1.35rem 0 0;
+}
+
+.offer-price {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+
+.offer-price__label,
+.offer-price__figure {
+  margin: 0;
+}
+
+.offer-price__label {
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.offer-price__figure {
+  font-family: var(--serif);
+  font-size: clamp(3.1rem, 5vw, 4.5rem);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.offer-price__figure small {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html[data-locale="ta"] .offer-price__label,
+html[data-locale="ta"] .offer-price__figure small {
+  font-family: "Noto Sans Tamil", "Tamil Sangam MN", "Nirmala UI", Latha, var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .page-hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
@@ -1241,8 +1299,18 @@ html[data-locale="ta"] .home-hero .display-title {
 }
 
 .projects-explorer-section--full {
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
   padding-right: 0;
   padding-left: 0;
+}
+
+.work-across {
+  padding-top: clamp(2.75rem, 5vw, 4.25rem);
+}
+
+.work-across .page-title {
+  max-width: 16ch;
+  font-size: clamp(2rem, 3.2vw, 3.15rem);
 }
 
 .projects-explorer-shell--full {
@@ -1844,6 +1912,10 @@ html[data-locale="ta"] .home-hero .display-title {
 
   .page-hero--projects {
     padding-block: 7rem 2.5rem;
+  }
+
+  .page-hero--offer .page-title {
+    max-width: 12ch;
   }
 
   .page-hero__grid {

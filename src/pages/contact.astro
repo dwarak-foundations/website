@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
-import { whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
+import { email, whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
 
-const mapEmbed = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d497732.60109624936!2d80.209528!3d12.93752!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c35fe591a77%3A0xc76595f0e7d9138b!2sArumugam%20Nagar%20I%20St%2C%20Pallikaranai%2C%20Chennai%2C%20Tamil%20Nadu%20600100%2C%20India!5e0!3m2!1sen!2sus!4v1636088923209!5m2!1sen!2sus";
+const officeQuery = "Plot 13, Gomathi Bhavan, 2nd Cross Street, VGP Selva Nagar, Velachery, Chennai 600042";
+const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(officeQuery)}&z=16&hl=en&output=embed`;
 const whatsappUrl = whatsappHref("Hello, I would like to know more about Dwarak Foundations.");
 ---
 
 <BaseLayout
   title="Contact"
-  description="Contact Dwarak Foundations in Pallikaranai, Chennai to discuss a new home or residential construction project."
+  description="Contact Dwarak Foundations in Velachery, Chennai to discuss a new home or residential construction project."
 >
   <header class="page-hero">
     <div class="page-hero__grid shell">
@@ -42,18 +43,19 @@ const whatsappUrl = whatsappHref("Hello, I would like to know more about Dwarak 
           <div class="contact-item">
             <span>Email</span>
             <div>
-              <a href="mailto:dwarakfoundations@gmail.com" data-analytics-event="email_clicked" data-analytics-target="contact">
-                dwarakfoundations@gmail.com
+              <a href={`mailto:${email}`} data-analytics-event="email_clicked" data-analytics-target="contact">
+                {email}
               </a>
             </div>
           </div>
           <div class="contact-item">
             <span>Visit</span>
             <address>
-              Plot No. 11A, Ground Floor<br />
-              Arumugam Nagar 1st Street<br />
-              IIT Colony Main Road<br />
-              Pallikaranai, Chennai 600100
+              Plot 13, Door 7, Flat T1<br />
+              Gomathi Bhavan<br />
+              2nd Cross Street<br />
+              VGP Selva Nagar<br />
+              Velachery, Chennai 600042
             </address>
           </div>
           <div class="contact-item">
@@ -65,7 +67,7 @@ const whatsappUrl = whatsappHref("Hello, I would like to know more about Dwarak 
       <div class="map-frame contact-aside" data-reveal>
         <iframe
           src={mapEmbed}
-          title="Map showing the Dwarak Foundations office in Pallikaranai"
+          title="Map showing the Dwarak Foundations office in Velachery"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen

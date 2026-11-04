@@ -1,6 +1,7 @@
 ---
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { email } from "@/lib/contact";
 import "@/styles/global.css";
 
 interface Props {
@@ -28,14 +29,14 @@ const organizationSchema = {
   url: "https://dwarakfoundations.com",
   logo: "https://dwarakfoundations.com/img/brand/dark.svg",
   foundingDate: "1998",
-  email: "dwarakfoundations@gmail.com",
+  email,
   telephone: "+91-96000-69633",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Plot No. 11A, Ground Floor, Arumugam Nagar 1st Street, IIT Colony Main Road",
-    addressLocality: "Pallikaranai",
+    streetAddress: "Plot 13, Door 7, Flat T1, Gomathi Bhavan, 2nd Cross Street, VGP Selva Nagar",
+    addressLocality: "Velachery",
     addressRegion: "Tamil Nadu",
-    postalCode: "600100",
+    postalCode: "600042",
     addressCountry: "IN",
   },
 };

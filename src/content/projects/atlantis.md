@@ -1,10 +1,10 @@
 ---
 title: Dwarak Atlantis
-summary: 10 three-bedroom apartments in Pallikaranai. Ongoing.
+summary: 10 three-bedroom apartments in Pallikaranai.
 location: Pallikaranai
 street: Paari Street
 address: Plot Nos. 53 & 54, Paari Street, VGP Shanthi Nagar, Pallikaranai, Chennai 600100
-status: ongoing
+status: completed
 featured: true
 order: 1
 hero:
