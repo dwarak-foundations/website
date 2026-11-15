@@ -24,8 +24,11 @@ const projects = (await getCollection("projects")).sort(byOrder);
         </p>
       </div>
       <div class="page-hero__aside offer-price">
-        <p class="offer-price__label">Starts from</p>
-        <p class="offer-price__figure">₹7,400 <small>per sq.ft</small></p>
+        <p class="offer-price__label">Early bird offer</p>
+        <p class="offer-price__figure">
+          <s class="offer-price__original">₹7,800</s>
+          ₹7,400 <small>per sq.ft</small>
+        </p>
         <a class="button button--accent" href="/projects/chakravarthy-nagar/" data-analytics-event="project_opened">
           More details <span aria-hidden="true">↗</span>
         </a>

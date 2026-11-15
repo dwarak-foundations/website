@@ -8,6 +8,7 @@ const tamil: Record<string, string> = {
   "Now selling": "இப்போது விற்பனை",
   "A gated community on 5th Cross Street, Pallikaranai.": "பள்ளிக்கரணை, 5-வது குறுக்குத் தெருவில் ஒரு கேட்டட் கம்யூனிட்டி.",
   "Starts from": "தொடக்க விலை",
+  "Early bird offer": "முன்பதிவு சிறப்புச் சலுகை",
   "per sq.ft": "சதுர அடிக்கு",
   "More details": "மேலும் விவரங்கள்",
   "Building homes in Chennai since 1998.": "1998 முதல் சென்னையில் வீடுகளைக் கட்டுகிறோம்.",

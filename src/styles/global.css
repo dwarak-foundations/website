@@ -435,6 +435,14 @@ html[data-locale="ta"] .home-hero .display-title {
   line-height: 0.9;
 }
 
+.offer-price__original {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.55em;
+  text-decoration-thickness: 1.5px;
+}
+
 .offer-price__figure small {
   display: block;
   margin-top: 0.55rem;
