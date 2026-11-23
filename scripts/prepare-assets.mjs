@@ -1,4 +1,4 @@
-import { access, cp, mkdir, readdir, rm } from "node:fs/promises";
+import { access, cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -64,16 +64,42 @@ const faviconSource = join(imageSourcePath, "favicon", "favicon.svg");
 const faviconSizes = [
   ["favicon-16x16.png", 16],
   ["favicon-32x32.png", 32],
+  ["favicon-48x48.png", 48],
   ["apple-touch-icon.png", 180],
   ["android-chrome-192x192.png", 192],
   ["mstile-150x150.png", 150],
   ["android-chrome-512x512.png", 512],
   ["favicon.png", 512],
 ];
+const faviconPngs = new Map();
 
 for (const [filename, size] of faviconSizes) {
-  await sharp(faviconSource)
-    .resize(size, size)
-    .png()
-    .toFile(join(imageOutputPath, "favicon", filename));
+  const png = await sharp(faviconSource).resize(size, size).png().toBuffer();
+  faviconPngs.set(size, png);
+  await writeFile(join(imageOutputPath, "favicon", filename), png);
+}
+
+const icoImages = [16, 32, 48].map((size) => ({ size, png: faviconPngs.get(size) }));
+await writeFile(fileURLToPath(new URL("favicon.ico", outputRoot)), pngIco(icoImages));
+
+function pngIco(images) {
+  const headerSize = 6 + images.length * 16;
+  let offset = headerSize;
+  const directory = Buffer.alloc(headerSize);
+  directory.writeUInt16LE(0, 0);
+  directory.writeUInt16LE(1, 2);
+  directory.writeUInt16LE(images.length, 4);
+
+  images.forEach((image, index) => {
+    const entry = 6 + index * 16;
+    directory.writeUInt8(image.size, entry);
+    directory.writeUInt8(image.size, entry + 1);
+    directory.writeUInt16LE(1, entry + 4);
+    directory.writeUInt16LE(32, entry + 6);
+    directory.writeUInt32LE(image.png.length, entry + 8);
+    directory.writeUInt32LE(offset, entry + 12);
+    offset += image.png.length;
+  });
+
+  return Buffer.concat([directory, ...images.map((image) => image.png)]);
 }
