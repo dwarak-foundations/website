@@ -1,10 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
-import { email, whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
+import { email, officeMapEmbed, whatsappDisplayNumber, whatsappHref } from "@/lib/contact";
 
-const officeQuery = "Plot 13, Gomathi Bhavan, 2nd Cross Street, VGP Selva Nagar, Velachery, Chennai 600042";
-const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(officeQuery)}&z=16&hl=en&output=embed`;
 const whatsappUrl = whatsappHref("Hello, I would like to know more about Dwarak Foundations.");
 ---
 
@@ -66,7 +64,7 @@ const whatsappUrl = whatsappHref("Hello, I would like to know more about Dwarak 
       </div>
       <div class="map-frame contact-aside" data-reveal>
         <iframe
-          src={mapEmbed}
+          src={officeMapEmbed}
           title="Map showing the Dwarak Foundations office in Velachery"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
